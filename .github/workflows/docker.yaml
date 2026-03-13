@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ROS_DISTRO: [rolling]
+        ROS_DISTRO: [humble]
     runs-on: ubuntu-latest
     permissions:
       packages: write
