@@ -13,7 +13,9 @@
     "bash": {
       "path": "bash",
       "icon": "terminal-bash",
-      "args": ["-i"]
+      "args": [
+        "-i"
+      ]
     }
   },
   "files.insertFinalNewline": true,
@@ -23,16 +25,18 @@
   "autoDocstring.startOnNewLine": false,
   "autoDocstring.docstringFormat": "google-notypes",
   "python.autoComplete.extraPaths": [
-    "/opt/ros/rolling/lib/python3.12/site-packages/",
-    "/opt/ros/rolling/local/lib/python3.12/dist-packages/"
+    "/opt/ros/humble/lib/python3.12/site-packages/",
+    "/opt/ros/humble/local/lib/python3.12/dist-packages/"
   ],
   "python.analysis.extraPaths": [
-    "/opt/ros/rolling/lib/python3.12/site-packages/",
-    "/opt/ros/rolling/local/lib/python3.12/dist-packages/"
+    "/opt/ros/humble/lib/python3.12/site-packages/",
+    "/opt/ros/humble/local/lib/python3.12/dist-packages/"
   ],
   "[python]": {
     "editor.tabSize": 4,
-    "editor.rulers": [90],
+    "editor.rulers": [
+      80
+    ],
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.fixAll": "explicit",
