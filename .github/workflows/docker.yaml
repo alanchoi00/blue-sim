@@ -130,10 +130,10 @@ jobs:
           BLUE_ROS_DISTRO: ${{ matrix.ROS_DISTRO }}
           BLUE_GITHUB_REPO: ${{ steps.lowercase-repo.outputs.repository }}
         with:
+          source: "."  # use local checkout; prevents bake-action v6 from injecting GitHub URL as build source
           workdir: .docker
           files: |
             ./docker-bake.hcl
-          provenance: false  # prevents bake-action from injecting GitHub URL as build source, which breaks local --file resolution
           set: |
             *.platform=linux/amd64
             *.cache-from=type=registry,ref=ghcr.io/${{ steps.lowercase-repo.outputs.repository }}:cache-${{ matrix.ROS_DISTRO }}
