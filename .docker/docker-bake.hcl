@@ -9,7 +9,7 @@
 #   export BLUE_ROS_DISTRO=iron
 #   docker buildx bake
 #
-variable "BLUE_ROS_DISTRO" { default = "rolling" }
+variable "BLUE_ROS_DISTRO" { default = "humble" }
 variable "BLUE_GITHUB_REPO" { default = "robotic-decision-making-lab/blue" }
 
 group "default" {

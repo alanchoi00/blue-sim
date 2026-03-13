@@ -2,7 +2,7 @@
   "configurations": [
     {
       "name": "Linux",
-      "includePath": ["${workspaceFolder}/**", "/opt/ros/rolling/include/**"],
+      "includePath": ["${workspaceFolder}/**", "/opt/ros/humble/include/**"],
       "defines": [],
       "compilerPath": "/usr/bin/gcc",
       "cStandard": "c99",
