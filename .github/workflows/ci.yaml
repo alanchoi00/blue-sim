@@ -1,10 +1,14 @@
 name: Check Implementation
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+  # Triggers disabled: this workflow pulls from the upstream registry
+  # (ghcr.io/robotic-decision-making-lab/blue) which is maintained by
+  # the upstream project. Re-enable if publishing your own CI image.
+  #
+  # push:
+  #   branches:
+  #     - main
+  # pull_request:
   workflow_dispatch:
 
 env:
