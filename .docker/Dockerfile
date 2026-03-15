@@ -16,7 +16,6 @@ RUN apt-get -q update \
     clang-format-14 \
     clang-tidy \
     clang-tools \
-    libtinyxml2-dev \
     python3-pip \
     python3-dev \
     python3-venv \
@@ -27,39 +26,6 @@ RUN apt-get -q update \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
-
-# hydrodynamics requires C++23 (<expected> and <format>), which needs GCC 13+.
-# Ubuntu 22.04 ships GCC 11; gcc-13 is available via the ubuntu-toolchain-r PPA.
-RUN add-apt-repository ppa:ubuntu-toolchain-r/test \
-    && apt-get -q update \
-    && apt-get -q install --no-install-recommends -y gcc-13 g++-13 \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/* \
-    && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 13 \
-    && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 13
-
-# Ubuntu 22.04 Jammy ships CMake 3.22; some packages require 3.23+.
-# Install a newer CMake from Kitware's apt repo.
-RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null \
-        | gpg --dearmor - \
-        | tee /usr/share/keyrings/kitware-archive-keyring.gpg > /dev/null \
-    && echo "deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main" \
-        | tee /etc/apt/sources.list.d/kitware.list > /dev/null \
-    && apt-get -q update \
-    && apt-get -q install --no-install-recommends -y cmake \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
-
-# Ubuntu 22.04's libtinyxml2-dev does not ship TinyXML2Config.cmake.
-# Build tinyxml2 from source (matching the distro version) so that
-# find_package(TinyXML2) succeeds during colcon build.
-RUN git clone --depth 1 -b 9.0.0 https://github.com/leethomason/tinyxml2.git /tmp/tinyxml2 \
-    && cmake -S /tmp/tinyxml2 -B /tmp/tinyxml2/build \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DBUILD_SHARED_LIBS=ON \
-    && cmake --build /tmp/tinyxml2/build \
-    && cmake --install /tmp/tinyxml2/build \
-    && rm -rf /tmp/tinyxml2
 
 # Install all ROS dependencies for _just_ blue
 # (we have not imported other repos from .repos files)
@@ -83,17 +49,13 @@ RUN apt-get -q update \
 FROM ci AS robot
 
 #
-# Ubuntu 24.04 "Noble" includes a user "ubuntu" at UID 1000.
-# Ubuntu 22.04 "Jammy" (used by humble) does not, so we create it if absent.
+# Ubuntu 24.04 "Noble", which is used as the base image for
+# jazzy and humble images, now includes a user "ubuntu" at UID 1000
 ARG USERNAME=ubuntu
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
-RUN if ! id -u $USERNAME > /dev/null 2>&1; then \
-        groupadd --gid $USER_GID $USERNAME \
-        && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME; \
-    fi \
-    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+RUN echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME \
     && usermod -a -G dialout $USERNAME \
     && echo "source /usr/share/bash-completion/completions/git" >> /home/$USERNAME/.bashrc
