@@ -1,12 +1,15 @@
 name: Check Documentation
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    paths:
-      - docs/**
+  # Triggers disabled: documentation is maintained by the upstream project.
+  # Re-enable if actively updating docs in this fork.
+  #
+  # push:
+  #   branches:
+  #     - main
+  # pull_request:
+  #   paths:
+  #     - docs/**
   workflow_dispatch:
 
 jobs:

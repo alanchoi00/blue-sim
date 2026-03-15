@@ -1,9 +1,13 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
+  # Triggers disabled: GitHub Pages deployment is for the upstream project's
+  # website. Re-enable if hosting docs from this fork.
+  #
+  # push:
+  #   branches:
+  #     - main
+  workflow_dispatch:
 
 jobs:
   docs:
