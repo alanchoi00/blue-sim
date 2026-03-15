@@ -1,17 +1,23 @@
 name: Docker
 
 on:
-  schedule:
-    - cron: "0 17 * * 6"
-  push:
-    branches:
-      - main
-  pull_request:
-    paths:
-      - .docker/**
-      - .github/workflows/docker.yaml
-      - blue.repos
-      - requirements-build.txt
+  # Triggers disabled: this fork is used for local ROS 2 Humble simulation
+  # development (thesis work) and does not publish images to a registry.
+  # The upstream workflow (Robotic-Decision-Making-Lab/blue) handles
+  # scheduled builds and pushes to GHCR. Re-enable triggers below if
+  # image publishing is ever needed.
+  #
+  # schedule:
+  #   - cron: "0 17 * * 6"
+  # push:
+  #   branches:
+  #     - main
+  # pull_request:
+  #   paths:
+  #     - .docker/**
+  #     - .github/workflows/docker.yaml
+  #     - blue.repos
+  #     - requirements-build.txt
   workflow_dispatch:
 
 env:
