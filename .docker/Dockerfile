@@ -16,8 +16,8 @@ RUN apt-get -q update \
     clang-format-14 \
     clang-tidy \
     clang-tools \
-    gcc-12 \
-    g++-12 \
+    gcc-13 \
+    g++-13 \
     libtinyxml2-dev \
     python3-pip \
     python3-dev \
@@ -32,8 +32,8 @@ RUN apt-get -q update \
 
 # hydrodynamics requires C++23 (<expected>), which needs GCC 12+.
 # Ubuntu 22.04 ships GCC 11 by default; set GCC 12 as the default compiler.
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 12 \
-    && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 12
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 13 \
+    && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 13
 
 # Ubuntu 22.04 Jammy ships CMake 3.22; some packages require 3.23+.
 # Install a newer CMake from Kitware's apt repo.
