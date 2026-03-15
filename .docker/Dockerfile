@@ -16,7 +16,7 @@ RUN apt-get -q update \
     clang-format-14 \
     clang-tidy \
     clang-tools \
-    libtinyxml2-dev \
+    ros-${ROS_DISTRO}-tinyxml2-vendor \
     python3-pip \
     python3-dev \
     python3-venv \
