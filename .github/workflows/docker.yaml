@@ -41,12 +41,6 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-        with:
-          # Pin docker-buildx to this version for now
-          #  v0.19.2 has issues with empty keys,
-          #  particularly the "*.cache-to=" used below
-          #
-          version: v0.18.0
 
       - if: env.PUSH == 'true'
         name: Log into registry
@@ -121,11 +115,8 @@ jobs:
             ${{ steps.meta-desktop.outputs.bake-file }}
             ${{ steps.meta-desktop-nvidia.outputs.bake-file }}
           push: ${{ env.PUSH }}
-          set: |
-            *.cache-from=type=registry,ref=ghcr.io/${{ steps.lowercase-repo.outputs.repository }}:cache-${{ matrix.ROS_DISTRO }}
-            *.cache-to=type=registry,mode=max,ref=ghcr.io/${{ steps.lowercase-repo.outputs.repository }}:cache-${{ matrix.ROS_DISTRO }}
 
-      # Pull request builds are not cached; and only built for AMD64
+      # Pull request builds are only built for AMD64
       - if: github.event_name == 'pull_request'
         name: Build and push (PR)
         uses: docker/bake-action@v6.5.0
@@ -139,5 +130,3 @@ jobs:
             ./docker-bake.hcl
           set: |
             *.platform=linux/amd64
-            *.cache-from=type=registry,ref=ghcr.io/${{ steps.lowercase-repo.outputs.repository }}:cache-${{ matrix.ROS_DISTRO }}
-            *.cache-to=
