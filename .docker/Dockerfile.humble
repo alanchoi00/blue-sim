@@ -23,19 +23,20 @@ ENV USER_WORKSPACE=/home/blue/ws_blue
 
 COPY . $USER_WORKSPACE/src/blue
 
-# Bypass expired ROS2 GPG key
+# Bypass expired ROS2 GPG key (requires root), then hand ownership to blue
 RUN sed -i 's|signed-by=/usr/share/keyrings/ros-archive-keyring.gpg||g' \
         /etc/apt/sources.list.d/*.list 2>/dev/null || true \
     && sed -i '/^Signed-By/d' /etc/apt/sources.list.d/*.sources 2>/dev/null || true \
     && echo 'Acquire::AllowInsecureRepositories "true";' | tee /etc/apt/apt.conf.d/99-ros-insecure > /dev/null \
-    && echo 'APT::Get::AllowUnauthenticated "true";' | tee -a /etc/apt/apt.conf.d/99-ros-insecure > /dev/null
+    && echo 'APT::Get::AllowUnauthenticated "true";' | tee -a /etc/apt/apt.conf.d/99-ros-insecure > /dev/null \
+    && chown -R blue:blue $USER_WORKSPACE
+
+USER blue
 
 RUN . "/opt/ros/humble/setup.sh" \
     && MAKEFLAGS="-j$(nproc)" colcon build \
         --parallel-workers $(nproc) \
         --packages-select blue_description blue_bringup blue_demos blue_localization
-
-USER blue
 
 FROM ghcr.io/robotic-decision-making-lab/blue:humble-desktop AS desktop
 
@@ -44,19 +45,20 @@ ENV USER_WORKSPACE=/home/blue/ws_blue
 
 COPY . $USER_WORKSPACE/src/blue
 
-# Bypass expired ROS2 GPG key
+# Bypass expired ROS2 GPG key (requires root), then hand ownership to blue
 RUN sed -i 's|signed-by=/usr/share/keyrings/ros-archive-keyring.gpg||g' \
         /etc/apt/sources.list.d/*.list 2>/dev/null || true \
     && sed -i '/^Signed-By/d' /etc/apt/sources.list.d/*.sources 2>/dev/null || true \
     && echo 'Acquire::AllowInsecureRepositories "true";' | tee /etc/apt/apt.conf.d/99-ros-insecure > /dev/null \
-    && echo 'APT::Get::AllowUnauthenticated "true";' | tee -a /etc/apt/apt.conf.d/99-ros-insecure > /dev/null
+    && echo 'APT::Get::AllowUnauthenticated "true";' | tee -a /etc/apt/apt.conf.d/99-ros-insecure > /dev/null \
+    && chown -R blue:blue $USER_WORKSPACE
+
+USER blue
 
 RUN . "/opt/ros/humble/setup.sh" \
     && MAKEFLAGS="-j$(nproc)" colcon build \
         --parallel-workers $(nproc) \
         --packages-select blue_description blue_bringup blue_demos blue_localization
-
-USER blue
 
 FROM ghcr.io/robotic-decision-making-lab/blue:humble-desktop-nvidia AS desktop-nvidia
 
@@ -65,16 +67,17 @@ ENV USER_WORKSPACE=/home/blue/ws_blue
 
 COPY . $USER_WORKSPACE/src/blue
 
-# Bypass expired ROS2 GPG key
+# Bypass expired ROS2 GPG key (requires root), then hand ownership to blue
 RUN sed -i 's|signed-by=/usr/share/keyrings/ros-archive-keyring.gpg||g' \
         /etc/apt/sources.list.d/*.list 2>/dev/null || true \
     && sed -i '/^Signed-By/d' /etc/apt/sources.list.d/*.sources 2>/dev/null || true \
     && echo 'Acquire::AllowInsecureRepositories "true";' | tee /etc/apt/apt.conf.d/99-ros-insecure > /dev/null \
-    && echo 'APT::Get::AllowUnauthenticated "true";' | tee -a /etc/apt/apt.conf.d/99-ros-insecure > /dev/null
+    && echo 'APT::Get::AllowUnauthenticated "true";' | tee -a /etc/apt/apt.conf.d/99-ros-insecure > /dev/null \
+    && chown -R blue:blue $USER_WORKSPACE
+
+USER blue
 
 RUN . "/opt/ros/humble/setup.sh" \
     && MAKEFLAGS="-j$(nproc)" colcon build \
         --parallel-workers $(nproc) \
         --packages-select blue_description blue_bringup blue_demos blue_localization
-
-USER blue

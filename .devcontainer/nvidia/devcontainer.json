@@ -4,6 +4,7 @@
   "context": "../..",
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/blue/ws_blue/src/blue,type=bind",
   "workspaceFolder": "/home/blue/ws_blue/src/blue",
+  "containerUser": "blue",
   "remoteUser": "blue",
   "runArgs": [
     "--network=host",

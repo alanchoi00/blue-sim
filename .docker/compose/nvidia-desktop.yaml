@@ -1,6 +1,10 @@
 services:
   blue:
-    image: ghcr.io/robotic-decision-making-lab/blue:humble-desktop-nvidia
+    image: ghcr.io/alanchoi00/blue-sim-humble:humble-desktop-nvidia
+    build:
+      dockerfile: .docker/Dockerfile.humble
+      target: desktop-nvidia
+      context: ../../
     environment:
       - DISPLAY=${DISPLAY}
       - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
