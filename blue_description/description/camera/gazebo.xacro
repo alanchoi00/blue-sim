@@ -29,6 +29,7 @@
         <update_rate>10</update_rate>
         <visualize>true</visualize>
         <topic>/camera/image_raw</topic>
+        <camera_info_topic>/camera/camera_info</camera_info_topic>
       </sensor>
     </gazebo>
 
