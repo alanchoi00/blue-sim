@@ -16,7 +16,6 @@ ENV USER_WORKSPACE=/home/ubuntu/ws_blue
 COPY . $USER_WORKSPACE/src/blue
 
 RUN . "/opt/ros/humble/setup.sh" \
-    && . "$USER_WORKSPACE/install/setup.sh" \
     && MAKEFLAGS="-j$(nproc)" colcon build \
         --parallel-workers $(nproc) \
         --packages-select blue_description blue_bringup blue_demos blue_localization
@@ -28,7 +27,6 @@ ENV USER_WORKSPACE=/home/ubuntu/ws_blue
 COPY . $USER_WORKSPACE/src/blue
 
 RUN . "/opt/ros/humble/setup.sh" \
-    && . "$USER_WORKSPACE/install/setup.sh" \
     && MAKEFLAGS="-j$(nproc)" colcon build \
         --parallel-workers $(nproc) \
         --packages-select blue_description blue_bringup blue_demos blue_localization
@@ -40,7 +38,6 @@ ENV USER_WORKSPACE=/home/ubuntu/ws_blue
 COPY . $USER_WORKSPACE/src/blue
 
 RUN . "/opt/ros/humble/setup.sh" \
-    && . "$USER_WORKSPACE/install/setup.sh" \
     && MAKEFLAGS="-j$(nproc)" colcon build \
         --parallel-workers $(nproc) \
         --packages-select blue_description blue_bringup blue_demos blue_localization
