@@ -25,7 +25,10 @@ RUN apt-get -q update \
     software-properties-common \
     && apt-get autoremove -y \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && wget -O /tmp/cmake.sh https://github.com/Kitware/CMake/releases/download/v3.28.3/cmake-3.28.3-linux-x86_64.sh \
+    && sh /tmp/cmake.sh --skip-license --prefix=/usr/local \
+    && rm /tmp/cmake.sh
 
 # Install all ROS dependencies for _just_ blue
 # (we have not imported other repos from .repos files)
