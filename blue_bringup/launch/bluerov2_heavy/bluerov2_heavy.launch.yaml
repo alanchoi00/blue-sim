@@ -1,5 +1,4 @@
 launch:
-
   - let:
       name: model_name
       value: bluerov2_heavy
@@ -84,6 +83,12 @@ launch:
       param:
         - name: robot_description
           value: $(var robot_description)
+
+  - node:
+      pkg: ros_gz_bridge
+      exec: parameter_bridge
+      args: /camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo
+      if: $(var use_sim)
 
   # Includes
   - include:
