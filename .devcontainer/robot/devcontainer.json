@@ -25,8 +25,14 @@
     "vscode": {
       "settings": {
         "python.defaultInterpreterPath": "/usr/bin/python3",
-        "python.autoComplete.extraPaths": ["${workspaceFolder}/install/"],
-        "python.analysis.extraPaths": ["${workspaceFolder}/install/"]
+        "python.autoComplete.extraPaths": [
+          "/opt/ros/humble/lib/python3.10/site-packages",
+          "/opt/ros/humble/local/lib/python3.10/dist-packages"
+        ],
+        "python.analysis.extraPaths": [
+          "/opt/ros/humble/lib/python3.10/site-packages",
+          "/opt/ros/humble/local/lib/python3.10/dist-packages"
+        ]
       },
       "extensions": [
         "ms-azuretools.vscode-docker",

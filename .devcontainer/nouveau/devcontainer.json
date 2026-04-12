@@ -19,14 +19,21 @@
     "DISPLAY": "${localEnv:DISPLAY}",
     "WAYLAND_DISPLAY": "${localEnv:WAYLAND_DISPLAY}",
     "XDG_RUNTIME_DIR": "${localEnv:XDG_RUNTIME_DIR}",
-    "PULSE_SERVER": "${localEnv:PULSE_SERVER}"
+    "PULSE_SERVER": "${localEnv:PULSE_SERVER}",
+    "ROS_DOMAIN_ID": "42"
   },
   "customizations": {
     "vscode": {
       "settings": {
         "python.defaultInterpreterPath": "/usr/bin/python3",
-        "python.autoComplete.extraPaths": ["${workspaceFolder}/install/"],
-        "python.analysis.extraPaths": ["${workspaceFolder}/install/"]
+        "python.autoComplete.extraPaths": [
+          "/opt/ros/humble/lib/python3.10/site-packages",
+          "/opt/ros/humble/local/lib/python3.10/dist-packages"
+        ],
+        "python.analysis.extraPaths": [
+          "/opt/ros/humble/lib/python3.10/site-packages",
+          "/opt/ros/humble/local/lib/python3.10/dist-packages"
+        ]
       },
       "extensions": [
         "ms-azuretools.vscode-docker",
