@@ -1,0 +1,31 @@
+launch:
+
+  - arg:
+      name: joy_config
+      default: $(find-pkg-share blue_teleop)/config/joy_teleop.yaml
+
+  - arg:
+      name: transforms_file
+      default: $(find-pkg-share blue_teleop)/config/teleop_transforms.yaml
+
+  - node:
+      pkg: joy_linux
+      exec: joy_linux_node
+      output: screen
+      param:
+        - from: $(var joy_config)
+
+  - node:
+      pkg: joy_teleop
+      exec: joy_teleop
+      output: screen
+      param:
+        - from: $(var joy_config)
+
+  - include:
+      file: $(find-pkg-share message_transforms)/launch/message_transforms.launch.py
+      arg:
+        - name: parameters_file
+          value: $(var transforms_file)
+        - name: ns
+          value: teleop_integration

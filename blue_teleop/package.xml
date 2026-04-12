@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>blue_teleop</name>
+  <version>0.0.1</version>
+  <description>Teleoperation launch configurations for BlueROV2</description>
+  <maintainer email="todo@todo.com">blue</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>teleop_twist_keyboard</exec_depend>
+  <exec_depend>joy_linux</exec_depend>
+  <exec_depend>joy_teleop</exec_depend>
+  <exec_depend>message_transforms</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
