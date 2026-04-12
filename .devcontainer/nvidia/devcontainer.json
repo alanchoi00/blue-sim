@@ -15,6 +15,7 @@
     "--privileged",
     "--volume=/tmp/.X11-unix:/tmp/.X11-unix",
     "--volume=/mnt/wslg:/mnt/wslg",
+    "--volume=/run/user/1000:/run/user/1000",
     "--runtime=nvidia",
     "--gpus=all"
   ],
@@ -29,17 +30,20 @@
     "__NV_PRIME_RENDER_OFFLOAD": "1",
     "__NV_PRIME_RENDER_OFFLOAD_PROVIDER": "NVIDIA-G1",
     "__GLX_VENDOR_LIBRARY_NAME": "nvidia",
-    "__VK_LAYER_NV_optimus": "NVIDIA_only"
+    "__VK_LAYER_NV_optimus": "NVIDIA_only",
+    "ROS_DOMAIN_ID": "42"
   },
   "customizations": {
     "vscode": {
       "settings": {
         "python.defaultInterpreterPath": "/usr/bin/python3",
         "python.autoComplete.extraPaths": [
-          "${workspaceFolder}/install/"
+          "/opt/ros/humble/lib/python3.10/site-packages",
+          "/opt/ros/humble/local/lib/python3.10/dist-packages"
         ],
         "python.analysis.extraPaths": [
-          "${workspaceFolder}/install/"
+          "/opt/ros/humble/lib/python3.10/site-packages",
+          "/opt/ros/humble/local/lib/python3.10/dist-packages"
         ]
       },
       "extensions": [
