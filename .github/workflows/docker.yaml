@@ -4,17 +4,17 @@ on:
   push:
     branches:
       - main
-    paths:
-      - .docker/**
-      - .github/workflows/docker.yaml
-      - blue.repos
-      - requirements-build.txt
+    paths-ignore:
+      - .devcontainer/**
+      - docs/**
+      - "**.md"
+      - "**.rst"
   pull_request:
-    paths:
-      - .docker/**
-      - .github/workflows/docker.yaml
-      - blue.repos
-      - requirements-build.txt
+    paths-ignore:
+      - .devcontainer/**
+      - docs/**
+      - "**.md"
+      - "**.rst"
   workflow_dispatch:
 
 env:
