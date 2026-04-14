@@ -28,7 +28,21 @@
       </visual>
       <collision name="base_link_collision">
         <geometry>
-          <box size="0.457 0.575 0.05" />
+          <mesh
+            filename="file://$(find blue_description)/meshes/bluerov2_heavy/bluerov2_heavy_collision.dae"
+            scale="0.025 0.025 0.025"
+          />
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0" />
+      </collision>
+      <!-- Buoyancy volume for gz graded_buoyancy plugin (mesh collisions are ignored).
+           Footprint 0.457 x 0.575 matches the outer frame dimensions.
+           Height 0.0495 m gives volume 0.013 m^3 -> 127.5 N buoyancy = 13.0 kg x 9.81 (neutral).
+           Origin z=0.06 places the centre of buoyancy above the centre of gravity (z=0.011)
+           for roll/pitch stability. -->
+      <collision name="base_link_buoyancy">
+        <geometry>
+          <box size="0.457 0.575 0.0495" />
         </geometry>
         <origin rpy="0 0 0" xyz="0 0 0.06" />
       </collision>
