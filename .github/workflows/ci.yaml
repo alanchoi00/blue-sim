@@ -37,7 +37,7 @@ jobs:
       - name: Run ROS Industrial CI
         uses: ros-industrial/industrial_ci@master
         env:
-          DOCKER_IMAGE: ghcr.io/robotic-decision-making-lab/blue:${{ matrix.env.IMAGE }}
+          DOCKER_IMAGE: ghcr.io/alanchoi00/blue-sim:${{ matrix.env.IMAGE }}
           BEFORE_INIT: >-
             sudo sed -i 's|signed-by=/usr/share/keyrings/ros-archive-keyring.gpg||g'
             /etc/apt/sources.list.d/*.list 2>/dev/null || true &&
