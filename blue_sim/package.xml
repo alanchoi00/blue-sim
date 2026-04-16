@@ -2,18 +2,18 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>blue_sim</name>
-  <version>0.0.1</version>
-  <description>Simulation entry point for BlueROV2 docking research</description>
-  <maintainer email="todo@todo.com">blue</maintainer>
+  <version>0.0.0</version>
+  <description>Simulation launch and ArduSub interface nodes for BlueROV2</description>
+  <maintainer email="alanchoi.uni@gmail.com">ubuntu</maintainer>
   <license>MIT</license>
 
-  <buildtool_depend>ament_cmake</buildtool_depend>
-
   <exec_depend>blue_bringup</exec_depend>
-  <exec_depend>blue_control</exec_depend>
   <exec_depend>blue_teleop</exec_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>mavros_msgs</exec_depend>
 
   <export>
-    <build_type>ament_cmake</build_type>
+    <build_type>ament_python</build_type>
   </export>
 </package>

@@ -4,7 +4,7 @@
   <name>blue_teleop</name>
   <version>0.0.1</version>
   <description>Teleoperation launch configurations for BlueROV2</description>
-  <maintainer email="todo@todo.com">blue</maintainer>
+  <maintainer email="alanchoi.uni@gmail.com">Alan Choi</maintainer>
   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
