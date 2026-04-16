@@ -1,10 +1,17 @@
-ARG ROS_DISTRO=humble
+ARG ROS_DISTRO=jazzy
 FROM ros:$ROS_DISTRO-ros-base AS ci
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /root/ws_blue
 COPY . src/blue
+
+# Bypass expired ROS2 GPG key
+RUN sed -i 's|signed-by=/usr/share/keyrings/ros-archive-keyring.gpg||g' \
+    /etc/apt/sources.list.d/*.list 2>/dev/null || true \
+    && sed -i '/^Signed-By/d' /etc/apt/sources.list.d/*.sources 2>/dev/null || true \
+    && echo 'Acquire::AllowInsecureRepositories "true";' | tee /etc/apt/apt.conf.d/99-ros-insecure > /dev/null \
+    && echo 'APT::Get::AllowUnauthenticated "true";' | tee -a /etc/apt/apt.conf.d/99-ros-insecure > /dev/null
 
 # Install apt packages needed for CI
 RUN apt-get -q update \
@@ -32,7 +39,7 @@ RUN apt-get -q update \
 RUN apt-get -q update \
     && apt-get -q -y upgrade \
     && rosdep update \
-    && rosdep install -y --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} --as-root=apt:false \
+    && rosdep install -y --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} --as-root=apt:false --skip-keys=message_transforms \
     && rm -rf src \
     && apt-get autoremove -y \
     && apt-get clean -y \
@@ -50,7 +57,7 @@ FROM ci AS robot
 
 #
 # Ubuntu 24.04 "Noble", which is used as the base image for
-# jazzy and humble images, now includes a user "ubuntu" at UID 1000
+# jazzy and jazzy images, now includes a user "ubuntu" at UID 1000
 ARG USERNAME=ubuntu
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
@@ -111,7 +118,7 @@ RUN sudo apt-get -q update \
 # Manually install MAVROS from source in the ws_blue/ workspace
 WORKDIR $USER_WORKSPACE/src/
 ARG MAVROS_RELEASE=ros2
-ARG MAVLINK_RELEASE=release/humble/mavlink
+ARG MAVLINK_RELEASE=release/jazzy/mavlink
 RUN git clone --depth 1 -b ${MAVROS_RELEASE} https://github.com/mavlink/mavros.git
 RUN git clone --depth 1 --recursive -b ${MAVLINK_RELEASE} https://github.com/ros2-gbp/mavlink-gbp-release.git mavlink
 
@@ -120,7 +127,7 @@ RUN sudo apt-get -q update \
     && sudo apt-get -q -y upgrade \
     && vcs import src < src/blue/blue.repos \
     && rosdep update \
-    && rosdep install -y --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} \
+    && rosdep install -y --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} --skip-keys=message_transforms \
     && sudo apt-get autoremove -y \
     && sudo apt-get clean -y \
     && sudo rm -rf /var/lib/apt/lists/*

@@ -25,12 +25,12 @@
   "autoDocstring.startOnNewLine": false,
   "autoDocstring.docstringFormat": "google-notypes",
   "python.autoComplete.extraPaths": [
-    "/opt/ros/humble/lib/python3.10/site-packages",
-    "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    "/opt/ros/jazzy/lib/python3.10/site-packages",
+    "/opt/ros/jazzy/local/lib/python3.10/dist-packages"
   ],
   "python.analysis.extraPaths": [
-    "/opt/ros/humble/lib/python3.10/site-packages",
-    "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    "/opt/ros/jazzy/lib/python3.10/site-packages",
+    "/opt/ros/jazzy/local/lib/python3.10/dist-packages"
   ],
   "[python]": {
     "editor.tabSize": 4,
@@ -63,6 +63,6 @@
     "**/log": true
   },
   "python.analysis.typeCheckingMode": "basic",
-  "ROS2.distro": "humble",
+  "ROS2.distro": "jazzy",
   "cmake.ignoreCMakeListsMissing": true
 }

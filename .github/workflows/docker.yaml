@@ -18,14 +18,14 @@ on:
   workflow_dispatch:
 
 env:
-  PUSH: ${{ (github.event_name != 'pull_request') && (github.repository == 'alanchoi00/blue-sim-humble') }}
+  PUSH: ${{ (github.event_name != 'pull_request') && (github.repository == 'alanchoi00/blue-sim') }}
 
 jobs:
   docker_build:
     strategy:
       fail-fast: false
       matrix:
-        ROS_DISTRO: [humble]
+        ROS_DISTRO: [jazzy]
     runs-on: ubuntu-latest
     permissions:
       packages: write

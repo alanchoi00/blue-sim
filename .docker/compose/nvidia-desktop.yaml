@@ -1,8 +1,8 @@
 services:
   blue:
-    image: ghcr.io/alanchoi00/blue-sim-humble:humble-desktop-nvidia
+    image: ghcr.io/alanchoi00/blue-sim:jazzy-desktop-nvidia
     build:
-      dockerfile: .docker/Dockerfile.humble
+      dockerfile: .docker/Dockerfile
       target: desktop-nvidia
       context: ../../
     environment:

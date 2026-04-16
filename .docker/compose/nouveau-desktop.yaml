@@ -1,8 +1,8 @@
 services:
   blue:
-    image: ghcr.io/alanchoi00/blue-sim-humble:humble-desktop
+    image: ghcr.io/alanchoi00/blue-sim:jazzy-desktop
     build:
-      dockerfile: .docker/Dockerfile.humble
+      dockerfile: .docker/Dockerfile
       target: desktop
       context: ../../
     environment:

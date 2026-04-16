@@ -1,10 +1,10 @@
-FROM ghcr.io/alanchoi00/blue-sim-humble:humble-desktop
+FROM ghcr.io/alanchoi00/blue-sim:jazzy-desktop
 
-ENV USERNAME=blue
+ENV USERNAME=ubuntu
 ENV USER_WORKSPACE=/home/$USERNAME/ws_blue
 WORKDIR $USER_WORKSPACE
 
-COPY --chown=blue:blue . src/blue
+COPY . src/blue
 
 RUN sudo apt-get -q update \
     && sudo apt-get -q -y upgrade \

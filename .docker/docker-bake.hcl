@@ -9,8 +9,8 @@
 #   export BLUE_ROS_DISTRO=iron
 #   docker buildx bake
 #
-variable "BLUE_ROS_DISTRO" { default = "humble" }
-variable "BLUE_GITHUB_REPO" { default = "robotic-decision-making-lab/blue" }
+variable "BLUE_ROS_DISTRO" { default = "jazzy" }
+variable "BLUE_GITHUB_REPO" { default = "alanchoi00/blue-sim" }
 
 group "default" {
   targets = ["ci", "robot", "desktop", "desktop-nvidia"]
@@ -33,7 +33,7 @@ target "docker-metadata-action-desktop-nvidia" {}
 #
 target "ci" {
   inherits = ["docker-metadata-action-ci"]
-  dockerfile = ".docker/Dockerfile.humble"
+  dockerfile = ".docker/Dockerfile"
   target = "ci"
   context = ".."
   tags = [
@@ -47,7 +47,7 @@ target "ci" {
 
 target "robot" {
   inherits = ["docker-metadata-action-robot"]
-  dockerfile = ".docker/Dockerfile.humble"
+  dockerfile = ".docker/Dockerfile"
   target = "robot"
   context = ".."
   tags = [
@@ -61,7 +61,7 @@ target "robot" {
 
 target "desktop" {
   inherits = ["docker-metadata-action-desktop"]
-  dockerfile = ".docker/Dockerfile.humble"
+  dockerfile = ".docker/Dockerfile"
   target = "desktop"
   context = ".."
   args = {

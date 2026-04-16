@@ -2,10 +2,10 @@
   "name": "Nouveau Dev Container",
   "dockerFile": "Dockerfile",
   "context": "../..",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/home/blue/ws_blue/src/blue,type=bind",
-  "workspaceFolder": "/home/blue/ws_blue/src/blue",
-  "containerUser": "blue",
-  "remoteUser": "blue",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/ubuntu/ws_blue/src/blue,type=bind",
+  "workspaceFolder": "/home/ubuntu/ws_blue/src/blue",
+  "containerUser": "ubuntu",
+  "remoteUser": "ubuntu",
   "runArgs": [
     "--network=host",
     "--cap-add=SYS_PTRACE",
@@ -20,19 +20,21 @@
     "WAYLAND_DISPLAY": "${localEnv:WAYLAND_DISPLAY}",
     "XDG_RUNTIME_DIR": "${localEnv:XDG_RUNTIME_DIR}",
     "PULSE_SERVER": "${localEnv:PULSE_SERVER}",
-    "ROS_DOMAIN_ID": "42"
+    "ROS_DOMAIN_ID": "42",
+    "GZ_SIM_SYSTEM_PLUGIN_PATH": "/home/ubuntu/ardupilot_gazebo/build",
+    "GZ_SIM_RESOURCE_PATH": "/home/ubuntu/ardupilot_gazebo/models:/home/ubuntu/ardupilot_gazebo/worlds"
   },
   "customizations": {
     "vscode": {
       "settings": {
         "python.defaultInterpreterPath": "/usr/bin/python3",
         "python.autoComplete.extraPaths": [
-          "/opt/ros/humble/lib/python3.10/site-packages",
-          "/opt/ros/humble/local/lib/python3.10/dist-packages"
+          "/opt/ros/jazzy/lib/python3.12/site-packages",
+          "/opt/ros/jazzy/local/lib/python3.12/dist-packages"
         ],
         "python.analysis.extraPaths": [
-          "/opt/ros/humble/lib/python3.10/site-packages",
-          "/opt/ros/humble/local/lib/python3.10/dist-packages"
+          "/opt/ros/jazzy/lib/python3.12/site-packages",
+          "/opt/ros/jazzy/local/lib/python3.12/dist-packages"
         ]
       },
       "extensions": [

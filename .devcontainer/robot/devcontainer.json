@@ -5,7 +5,7 @@
     "context": "../..",
     "args": {
       "BLUE_GITHUB_REPO": "ghcr.io/robotic-decision-making-lab/blue",
-      "ROS_DISTRO": "humble"
+      "ROS_DISTRO": "jazzy"
     }
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/blue/ws_blue/src/blue,type=bind",
@@ -26,12 +26,12 @@
       "settings": {
         "python.defaultInterpreterPath": "/usr/bin/python3",
         "python.autoComplete.extraPaths": [
-          "/opt/ros/humble/lib/python3.10/site-packages",
-          "/opt/ros/humble/local/lib/python3.10/dist-packages"
+          "/opt/ros/jazzy/lib/python3.10/site-packages",
+          "/opt/ros/jazzy/local/lib/python3.10/dist-packages"
         ],
         "python.analysis.extraPaths": [
-          "/opt/ros/humble/lib/python3.10/site-packages",
-          "/opt/ros/humble/local/lib/python3.10/dist-packages"
+          "/opt/ros/jazzy/lib/python3.10/site-packages",
+          "/opt/ros/jazzy/local/lib/python3.10/dist-packages"
         ]
       },
       "extensions": [
