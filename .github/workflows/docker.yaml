@@ -116,6 +116,9 @@ jobs:
             ${{ steps.meta-desktop.outputs.bake-file }}
             ${{ steps.meta-desktop-nvidia.outputs.bake-file }}
           push: ${{ env.PUSH }}
+          set: |
+            *.cache-from=type=gha
+            *.cache-to=type=gha,mode=max
 
       # Pull request builds are only built for AMD64
       - if: github.event_name == 'pull_request'
@@ -131,3 +134,4 @@ jobs:
             ./docker-bake.hcl
           set: |
             *.platform=linux/amd64
+            *.cache-from=type=gha
