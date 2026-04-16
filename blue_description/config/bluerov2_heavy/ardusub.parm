@@ -1,4 +1,6 @@
 # These settings were copied from ardupilot/Tools/autotest/default_params/sub-6dof.parm
+INITIAL_MODE     16
+ARMING_CHECK     0
 BARO_RND         0.02
 BATT_MONITOR     4
 BTN0_FUNCTION    0
