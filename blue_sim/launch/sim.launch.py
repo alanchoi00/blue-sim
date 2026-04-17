@@ -91,8 +91,8 @@ def generate_launch_description():
             "xacro ",
             PathJoinSubstitution(
                 [
-                    FindPackageShare("blue_control"),
-                    "description/urdf/bluerov2_heavy.config.xacro",
+                    FindPackageShare("blue_description"),
+                    "description/bluerov2_heavy/config.xacro",
                 ]
             ),
             " use_sim:=",
@@ -105,8 +105,8 @@ def generate_launch_description():
             "xacro ",
             PathJoinSubstitution(
                 [
-                    FindPackageShare("blue_control"),
-                    "description/urdf/bluerov2.config.xacro",
+                    FindPackageShare("blue_description"),
+                    "description/bluerov2/config.xacro",
                 ]
             ),
             " use_sim:=",
