@@ -45,6 +45,8 @@ jobs:
             sudo sed -i 's|signed-by=/usr/share/keyrings/ros-archive-keyring.gpg||g'
             /etc/apt/sources.list.d/*.list 2>/dev/null || true &&
             sudo sed -i '/^Signed-By/d' /etc/apt/sources.list.d/*.sources 2>/dev/null || true &&
+            sudo sed -i 's|archive.ubuntu.com|azure.archive.ubuntu.com|g'
+            /etc/apt/sources.list.d/*.sources /etc/apt/sources.list.d/*.list /etc/apt/sources.list 2>/dev/null || true &&
             echo 'Acquire::AllowInsecureRepositories "true";' | sudo tee /etc/apt/apt.conf.d/99-ros-insecure > /dev/null &&
             echo 'APT::Get::AllowUnauthenticated "true";' | sudo tee -a /etc/apt/apt.conf.d/99-ros-insecure > /dev/null
           CXXFLAGS: >-
