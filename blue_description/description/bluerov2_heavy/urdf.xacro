@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<!-- BlueROV2 Heavy URDF
+     Physical parameters (mass, inertia, volume, CoB) from Table A1:
+     von Benzon et al., "An Open-Source Benchmark Simulator: Control of a BlueROV2
+     Underwater Robot", J. Mar. Sci. Eng. 2022, 10, 1898.
+     https://doi.org/10.3390/jmse10121898 -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:macro name="bluerov2_heavy_urdf" params="prefix">
 
@@ -6,16 +11,11 @@
 
     <link name="${prefix}base_link">
       <inertial>
-        <origin rpy="0 0 0" xyz="0.0 0.0 0.011" />
-        <mass value="13.0" />
-        <inertia
-          ixx="0.26"
-          ixy="0"
-          ixz="0"
-          iyy="0.23"
-          iyz="0"
-          izz="0.37"
-        />
+        <!-- m=13.5 kg, Ix=0.26, Iy=0.23, Iz=0.37 kg m^2 (Table A1).
+             b-frame origin at CoM (Assumption 4), so inertial xyz=(0,0,0). -->
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+        <mass value="13.5" />
+        <inertia ixx="0.26" ixy="0" ixz="0" iyy="0.23" iyz="0" izz="0.37" />
       </inertial>
       <visual>
         <geometry>
@@ -35,16 +35,12 @@
         </geometry>
         <origin rpy="0 0 0" xyz="0 0 0" />
       </collision>
-      <!-- Buoyancy volume for gz graded_buoyancy plugin (mesh collisions are ignored).
-           Footprint 0.457 x 0.575 matches the outer frame dimensions.
-           Height 0.0495 m gives volume 0.013 m^3 -> 127.5 N buoyancy = 13.0 kg x 9.81 (neutral).
-           Origin z=0.06 places the centre of buoyancy above the centre of gravity (z=0.011)
-           for roll/pitch stability. -->
+      <!-- Buoyancy volume for gz graded_buoyancy plugin (Table A1)-->
       <collision name="base_link_buoyancy">
         <geometry>
-          <box size="0.457 0.575 0.0495" />
+          <box size="0.257 0.337 0.1547" />
         </geometry>
-        <origin rpy="0 0 0" xyz="0 0 0.06" />
+        <origin rpy="0 0 0" xyz="0 0 0.01" />
       </collision>
     </link>
 
