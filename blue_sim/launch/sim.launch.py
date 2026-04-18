@@ -35,8 +35,11 @@ def generate_launch_description():
 
     declare_model = DeclareLaunchArgument(
         "model",
-        choices=["bluerov2", "bluerov2_heavy", "bluerov2_reach"],
-        description="BlueROV2 model variant (bluerov2 or bluerov2_heavy)",
+        choices=["bluerov2", "bluerov2_heavy"],
+        description=(
+            "BlueROV2 model variant (bluerov2 or bluerov2_heavy). "
+            "bluerov2_heavy_reach is not supported yet."
+        ),
     )
     declare_use_sim = DeclareLaunchArgument(
         "use_sim",
