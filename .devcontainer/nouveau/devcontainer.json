@@ -24,6 +24,7 @@
     "GZ_SIM_SYSTEM_PLUGIN_PATH": "/home/ubuntu/ardupilot_gazebo/build",
     "GZ_SIM_RESOURCE_PATH": "/home/ubuntu/ardupilot_gazebo/models:/home/ubuntu/ardupilot_gazebo/worlds"
   },
+  "postStartCommand": "sudo mkdir -p /run/user/1000 && sudo chown ubuntu:ubuntu /run/user/1000 && sudo chmod 700 /run/user/1000",
   "customizations": {
     "vscode": {
       "settings": {
