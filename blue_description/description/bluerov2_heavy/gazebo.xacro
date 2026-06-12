@@ -102,12 +102,10 @@
     <gazebo>
       <plugin filename="gz-sim-hydrodynamics-system" name="gz::sim::systems::Hydrodynamics">
         <link_name>${prefix}base_footprint</link_name>
-        <!-- Added mass left at 0. von Benzon values are xDotU 6.36, yDotV 7.12,
-             zDotW 18.68, kDotP 0.189, mDotQ 0.135, nDotR 0.222 (POSITIVE sign
-             convention). NOT enabled because plugin-based added mass is
-             numerically unstable on DART (gz warning), and URDF fluid_added_mass
-             is unsupported by sdformat14/Harmonic (sdformat issue #1467, open).
-             Revisit on a newer gz or if the model spawn moves to SDF. -->
+        <!-- Added mass left at 0 (von Benzon xDotU 6.36, yDotV 7.12, zDotW 18.68,
+             kDotP 0.189, mDotQ 0.135, nDotR 0.222, positive sign). Not enabled
+             because plugin-based added mass is unstable on DART and URDF
+             fluid_added_mass is unsupported in sdformat14 (Harmonic). -->
         <xDotU>0</xDotU>
         <yDotV>0</yDotV>
         <zDotW>0</zDotW>
