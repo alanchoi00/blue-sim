@@ -20,7 +20,7 @@
       <visual>
         <geometry>
           <mesh
-            filename="file://$(find blue_description)/meshes/bluerov2_heavy/bluerov2_heavy.dae"
+            filename="package://blue_description/meshes/bluerov2_heavy/bluerov2_heavy.dae"
             scale="0.025 0.025 0.025"
           />
         </geometry>
@@ -29,7 +29,7 @@
       <collision name="base_link_collision">
         <geometry>
           <mesh
-            filename="file://$(find blue_description)/meshes/bluerov2_heavy/bluerov2_heavy_collision.dae"
+            filename="package://blue_description/meshes/bluerov2_heavy/bluerov2_heavy_collision.dae"
             scale="0.025 0.025 0.025"
           />
         </geometry>
