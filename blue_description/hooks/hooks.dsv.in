@@ -1,2 +1,4 @@
 prepend-non-duplicate;GZ_SIM_RESOURCE_PATH;@CMAKE_INSTALL_PREFIX@/share/@PROJECT_NAME@/gazebo/models
 prepend-non-duplicate;GZ_SIM_RESOURCE_PATH;@CMAKE_INSTALL_PREFIX@/share/@PROJECT_NAME@/gazebo/worlds
+# share root so gz resolves package:// meshes (rewritten to model://blue_description/...) for Gazebo, matching what foxglove_bridge serves
+prepend-non-duplicate;GZ_SIM_RESOURCE_PATH;@CMAKE_INSTALL_PREFIX@/share
