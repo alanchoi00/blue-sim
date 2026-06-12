@@ -133,8 +133,15 @@ RUN sudo apt-get -q update \
     && sudo apt-get clean -y \
     && sudo rm -rf /var/lib/apt/lists/*
 
-# Actually build workspace
+# Actually build workspace.
+# Build hydrodynamics first, then SOURCE the partial install before the full
+# build: upstream auv_controllers/ik_solvers does find_package(hydrodynamics
+# REQUIRED) but omits the matching <depend> in its package.xml, so colcon never
+# puts hydrodynamics on ik_solvers' CMAKE_PREFIX_PATH. Sourcing install/setup.sh
+# exposes it globally so the find_package resolves despite the missing dep.
 RUN . "/opt/ros/${ROS_DISTRO}/setup.sh" \
+    && colcon build --packages-up-to hydrodynamics \
+    && . install/setup.sh \
     && colcon build
 
 RUN echo "source ${USER_WORKSPACE}/install/setup.bash" >> /home/$USERNAME/.bashrc \
