@@ -94,3 +94,9 @@ SERVO5_FUNCTION 37
 SERVO6_FUNCTION 38
 SERVO7_FUNCTION 39
 SERVO8_FUNCTION 40
+# RC deadzones lowered from the firmware default (30/40) so small autonomous
+# cmd_vel corrections (heave/yaw/forward/lateral) are not swallowed near a target.
+RC3_DZ           5
+RC4_DZ           5
+RC5_DZ           5
+RC6_DZ           5
