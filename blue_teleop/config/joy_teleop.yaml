@@ -9,7 +9,12 @@ joy_teleop:
       type: topic
       interface_type: geometry_msgs/msg/Twist
       topic_name: /cmd_vel
-      deadman_axes: [2]
+      # LB (button 4) as the deadman: a button is cleanly 0/1, so it works as a
+      # momentary hold. A trigger axis (e.g. LT = axis 2) does NOT: it reads 0.0
+      # until first touched, then rests at +1.0 when released and -1.0 when
+      # pressed. joy_teleop's deadman_axes activates on '== 1.0', so a trigger
+      # latches ON when released and can't be held to drive.
+      deadman_buttons: [4]
       axis_mappings:
         linear-x:
           axis: 1
