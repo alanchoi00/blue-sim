@@ -4,12 +4,34 @@ launch:
       name: joy_config
       default: $(find-pkg-share blue_teleop)/config/joy_teleop.yaml
 
+  # Optional device pinning: false = config-driven name lookup (default);
+  # true = open joy_dev directly (a /dev/input/by-id/ path is replug-stable).
+  - arg:
+      name: joy_use_dev
+      default: "false"
+  - arg:
+      name: joy_dev
+      default: "/dev/input/js0"
+
   - node:
       pkg: joy_linux
       exec: joy_linux_node
       output: screen
+      unless: $(var joy_use_dev)
       param:
         - from: $(var joy_config)
+
+  - node:
+      pkg: joy_linux
+      exec: joy_linux_node
+      output: screen
+      if: $(var joy_use_dev)
+      param:
+        - from: $(var joy_config)
+        - name: dev_name
+          value: ""
+        - name: dev
+          value: $(var joy_dev)
 
   - node:
       pkg: joy_teleop

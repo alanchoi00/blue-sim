@@ -96,6 +96,8 @@ ros2 launch blue_sim sim.launch.py model:=bluerov2_heavy
 | `use_sim` | `true` | Launch Gazebo and ArduSub SITL |
 | `use_rviz` | `false` | Open RViz |
 | `use_joy` | `false` | Enable joystick teleoperation |
+| `joy_use_dev` | `false` | Open the joystick by path (`joy_dev`) instead of the config's device-name lookup |
+| `joy_dev` | `/dev/input/js0` | Joystick device path when `joy_use_dev:=true`; a `/dev/input/by-id/...` path is stable across replug |
 | `use_key` | `false` | Enable keyboard teleoperation |
 | `use_ardusub` | `false` | Launch ArduSub init + bridge nodes (arms vehicle on startup, subscribes to `cmd_vel`) |
 | `flight_mode` | `ALT_HOLD` | ArduSub flight mode set on startup - only takes effect when `use_ardusub:=true` |
@@ -111,6 +113,12 @@ ros2 launch blue_sim sim.launch.py model:=bluerov2_heavy use_ardusub:=true
 **With joystick teleoperation:**
 ```bash
 ros2 launch blue_sim sim.launch.py model:=bluerov2_heavy use_joy:=true
+```
+
+**Joystick pinned to a replug-stable device path:**
+```bash
+ros2 launch blue_sim sim.launch.py model:=bluerov2_heavy use_joy:=true \
+  joy_use_dev:=true joy_dev:=/dev/input/by-id/<your-controller>-joystick
 ```
 
 **With a custom world file:**
