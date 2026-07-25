@@ -56,6 +56,18 @@ def generate_launch_description():
         default_value="false",
         description="Use ArduSub joystick teleoperation (joy_interface)",
     )
+    declare_joy_use_dev = DeclareLaunchArgument(
+        "joy_use_dev",
+        default_value="false",
+        description="Open the joystick by path (joy_dev) instead of the config's "
+        "name lookup; false keeps existing config-driven behavior",
+    )
+    declare_joy_dev = DeclareLaunchArgument(
+        "joy_dev",
+        default_value="/dev/input/js0",
+        description="Joystick device path when joy_use_dev is true; a "
+        "/dev/input/by-id/... path is stable across replug",
+    )
     declare_use_key = DeclareLaunchArgument(
         "use_key",
         default_value="false",
@@ -173,6 +185,10 @@ def generate_launch_description():
                 ]
             )
         ),
+        launch_arguments={
+            "joy_use_dev": LaunchConfiguration("joy_use_dev"),
+            "joy_dev": LaunchConfiguration("joy_dev"),
+        }.items(),
         condition=LaunchConfigurationEquals("use_joy", "true"),
     )
 
@@ -200,6 +216,8 @@ def generate_launch_description():
             declare_use_rviz,
             declare_use_key,
             declare_use_joy,
+            declare_joy_use_dev,
+            declare_joy_dev,
             declare_flight_mode,
             declare_gazebo_world_file,
             declare_use_ardusub,
