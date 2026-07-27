@@ -118,7 +118,7 @@ jobs:
           push: ${{ env.PUSH }}
           set: |
             *.cache-from=type=gha
-            *.cache-to=type=gha,mode=max
+            *.cache-to=type=gha,mode=max,ignore-error=true
 
       # Pull request builds are only built for AMD64
       - if: github.event_name == 'pull_request'
