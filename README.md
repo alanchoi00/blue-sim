@@ -7,13 +7,13 @@ This fork ships pre-built Docker images that include Gazebo Harmonic, ArduPilot 
 MAVROS, and `ardupilot_gazebo` - all built from source with no dependency on external
 maintained images. It is developed as part of UNSW undergraduate thesis research on
 autonomous underwater vehicle docking, and is intended as a simulation harness for
-downstream projects (e.g. [bluerov2-docking](https://github.com/alanchoi00/bluerov2-docking)).
+downstream projects (e.g. [bluerov2-docking](https://github.com/UNSWROV/bluerov2-docking)).
 
 ## Supported Distributions
 
 | ROS 2 | Ubuntu | Status |
 |---|---|---|
-| [Jazzy](https://github.com/alanchoi00/blue-sim/pkgs/container/blue-sim) | 24.04 | Supported |
+| [Jazzy](https://github.com/UNSWROV/blue-sim/pkgs/container/blue-sim) | 24.04 | Supported |
 | [Humble](https://github.com/alanchoi00/blue-sim/pkgs/container/blue-sim-humble) | 22.04 | Discontinued |
 
 **Why Humble is no longer supported:** The previous Humble images were derived from
@@ -50,6 +50,7 @@ and pre-commit hooks.
 2. When prompted, select **Reopen in Container** (or run the command `Dev Containers: Reopen in Container`).
    - Select `.devcontainer/nouveau/` for AMD/Intel/Nouveau GPU
    - Select `.devcontainer/nvidia/` for NVIDIA GPU
+   - `.devcontainer/robot/` (the `jazzy-robot` image, for deployment on the vehicle) is carried over from upstream and has not been tested in this fork
 3. Wait for the container image to build (first time only - pulls `jazzy-desktop` base image and
    installs dependencies).
 4. Open a terminal inside the container and build the workspace:
@@ -140,8 +141,8 @@ Downstream workspaces pull the blue-sim Docker image as their base environment:
 
 | GPU | Image |
 |---|---|
-| Nouveau / AMD / Intel | `ghcr.io/alanchoi00/blue-sim:jazzy-desktop` |
-| NVIDIA | `ghcr.io/alanchoi00/blue-sim:jazzy-desktop-nvidia` |
+| Nouveau / AMD / Intel | `ghcr.io/unswrov/blue-sim:jazzy-desktop` |
+| NVIDIA | `ghcr.io/unswrov/blue-sim:jazzy-desktop-nvidia` |
 
 It is recommended to keep downstream packages in a separate workspace (e.g. `~/ws_<app>`)
 rather than adding them to the image's `~/ws_blue` workspace. Source `ws_blue` first,
@@ -159,7 +160,7 @@ reference them via `FindPackageShare("blue_sim")`. blue-sim is consumed via
 that fixes the model, world file, and ArduSub settings for your project, and
 exposes only the arguments relevant to your use case.
 
-[bluerov2-docking](https://github.com/alanchoi00/bluerov2-docking) is an example of this -
+[bluerov2-docking](https://github.com/UNSWROV/bluerov2-docking) is an example of this -
 its `sim` package wraps blue-sim with `bluerov2_heavy`, a custom ocean world, and
 `POSHOLD` flight mode pre-configured:
 
