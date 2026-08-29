@@ -18,7 +18,7 @@ on:
   workflow_dispatch:
 
 env:
-  PUSH: ${{ (github.event_name != 'pull_request') && (github.repository == 'alanchoi00/blue-sim') }}
+  PUSH: ${{ (github.event_name != 'pull_request') && (github.repository == 'unswrov/blue-sim') }}
 
 jobs:
   docker_build:

@@ -1,4 +1,4 @@
-FROM ghcr.io/alanchoi00/blue-sim:jazzy-desktop-nvidia
+FROM ghcr.io/unswrov/blue-sim:jazzy-desktop-nvidia
 
 USER ubuntu
 ENV USERNAME=ubuntu

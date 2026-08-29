@@ -1,7 +1,7 @@
 #
 # Dockerfile for *-robot development container
 #
-ARG BLUE_GITHUB_REPO=ghcr.io/alanchoi00/blue-sim
+ARG BLUE_GITHUB_REPO=ghcr.io/unswrov/blue-sim
 ARG ROS_DISTRO=jazzy
 FROM ${BLUE_GITHUB_REPO}:${ROS_DISTRO}-robot
 

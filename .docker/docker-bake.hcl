@@ -10,7 +10,7 @@
 #   docker buildx bake
 #
 variable "BLUE_ROS_DISTRO" { default = "jazzy" }
-variable "BLUE_GITHUB_REPO" { default = "alanchoi00/blue-sim" }
+variable "BLUE_GITHUB_REPO" { default = "unswrov/blue-sim" }
 
 group "default" {
   targets = ["ci", "robot", "desktop", "desktop-nvidia"]

@@ -1,6 +1,6 @@
 services:
   blue:
-    image: ghcr.io/alanchoi00/blue-sim:jazzy-desktop-nvidia
+    image: ghcr.io/unswrov/blue-sim:jazzy-desktop-nvidia
     build:
       dockerfile: .docker/Dockerfile
       target: desktop-nvidia
