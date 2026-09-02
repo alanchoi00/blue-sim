@@ -100,7 +100,7 @@ jobs:
           tags: |
             type=raw,value=${{ matrix.ROS_DISTRO }}-desktop-nvidia
 
-      - if: github.event_name == 'push'
+      - if: github.event_name != 'pull_request'
         name: Build and push (non PR)
         uses: docker/bake-action@v6.5.0
         env:
